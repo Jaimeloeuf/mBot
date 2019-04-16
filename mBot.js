@@ -72,48 +72,50 @@ basic.showLeds(`
     `)
 
 basic.forever(() => {
+    // If flag is set to stop the Bot or the direction is a invalid one, stop the mBot completely and finnish function
     if (!moveFlag || dir == directions.Invalid) {
         kitronik.motorOff(kitronik.Motors.Motor1)
         kitronik.motorOff(kitronik.Motors.Motor2)
-        return
+        return;
     }
 
     switch (dir) {
         case directions.None:
             kitronik.motorOff(kitronik.Motors.Motor1)
             kitronik.motorOff(kitronik.Motors.Motor2)
-            break
+            break;
 
         case directions.North:
             setWheelsSpeed(LvalueBig, RvalueBig)
-            break
+            break;
         case directions.South:
             setWheelsSpeed(LvalueBig, RvalueBig, kitronik.MotorDirection.Reverse)
-            break
+            break;
 
         case directions.NorthEast:
             setWheelsSpeed(LvalueBig, RvalueSmall)
-            break
+            break;
         case directions.NorthWest:
             setWheelsSpeed(LvalueSmall, RvalueBig)
-            break
+            break;
+            
         case directions.SouthEast:
             setWheelsSpeed(LvalueBig, RvalueSmall, kitronik.MotorDirection.Reverse)
-            break
+            break;
         case directions.SouthWest:
             setWheelsSpeed(LvalueSmall, RvalueBig, kitronik.MotorDirection.Reverse)
-            break
+            break;
 
         case directions.AntiClockwise:
             kitronik.motorOn(kitronik.Motors.Motor1, kitronik.MotorDirection.Forward, rotateSpeed)
             //kitronik.motorOn(kitronik.Motors.Motor2, kitronik.MotorDirection.Reverse, rotateSpeed)
             kitronik.motorOn(kitronik.Motors.Motor2, kitronik.MotorDirection.Forward, rotateSpeed) //hack : refer line 29
-            break
+            break;
         case directions.Clockwise:
             kitronik.motorOn(kitronik.Motors.Motor1, kitronik.MotorDirection.Reverse, rotateSpeed)
             //kitronik.motorOn(kitronik.Motors.Motor2, kitronik.MotorDirection.Forward, rotateSpeed)
             kitronik.motorOn(kitronik.Motors.Motor2, kitronik.MotorDirection.Reverse, rotateSpeed) //hack : refer line 29
-            break
+            break;
 
         default:
             basic.showString("default")
